@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.mohnage7.tendingrepos.TrendingRepo
+import com.mohnage7.tendingrepos.ui.TrendingIcons
 
 @Composable
 fun RepoItem(

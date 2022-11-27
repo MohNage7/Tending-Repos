@@ -1,4 +1,4 @@
-package com.mohnage7.tendingrepos.ui.theme
+package com.mohnage7.tendingrepos.ui
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
