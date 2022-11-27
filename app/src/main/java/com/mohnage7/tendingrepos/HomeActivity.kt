@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Brush.Companion.linearGradient
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.mohnage7.tendingrepos.ui.ErrorState
 import com.mohnage7.tendingrepos.ui.LoadingShimmerEffect
 import com.mohnage7.tendingrepos.ui.ShimmerItem
 import com.mohnage7.tendingrepos.ui.theme.RepoItem
@@ -44,6 +45,7 @@ class HomeActivity : ComponentActivity() {
                     )
 
                     ShowShimmering()
+                    ShowErrorState()
                 }
             }
         }
@@ -69,6 +71,13 @@ fun ShowShimmering() {
     }
 }
 
+@Composable
+fun ShowErrorState() {
+    ErrorState {
+        // TODO: trigger retry logic
+    }
+}
+
 
 @Composable
 @Preview(showBackground = true)
@@ -83,6 +92,13 @@ fun ShimmerPreview() {
         )
     )
 }
+
+@Composable
+@Preview(showBackground = true)
+fun ErrorStatePreview() {
+    ShowErrorState()
+}
+
 
 @Preview(showBackground = true)
 @Composable
