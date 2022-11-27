@@ -4,12 +4,17 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.mohnage7.tendingrepos.ui.theme.RepoItem
 import com.mohnage7.tendingrepos.ui.theme.TrendingReposTheme
 
 class HomeActivity : ComponentActivity() {
@@ -17,12 +22,22 @@ class HomeActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             TrendingReposTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    RenderTrendingRepos(
+                        listOf(
+                            TrendingRepo(
+                                image = R.drawable.baseline_account_circle_black_48,
+                                author = "Nageh",
+                                name = "Trending Repo",
+                                description = "Trending Github repositories https://github.com/MohNage7/Tending-Repos",
+                                stars = 100,
+                                language = "Kotlin"
+                            )
+                        )
+                    )
                 }
             }
         }
@@ -30,14 +45,38 @@ class HomeActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun RenderTrendingRepos(reposList: List<TrendingRepo>) {
+    LazyColumn {
+        items(reposList) { item ->
+            RepoItem(item = item)
+            Divider(color = Color.LightGray, thickness = 0.5.dp)
+        }
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     TrendingReposTheme {
-        Greeting("Android")
+        RenderTrendingRepos(
+            listOf(
+                TrendingRepo(
+                    image = R.drawable.baseline_account_circle_black_48,
+                    author = "Nageh",
+                    name = "Trending Repo",
+                    description = "Trending Github repositories https://github.com/MohNage7/Tending-Repos",
+                    stars = 100,
+                    language = "Kotlin"
+                ),
+                TrendingRepo(
+                    image = R.drawable.baseline_account_circle_black_48,
+                    author = "Nageh",
+                    name = "Clean Arch",
+                    description = "Clean Github repositories https://github.com/MohNage7/Tending-Repos",
+                    stars = 10000,
+                    language = "Java"
+                )
+            )
+        )
     }
 }
