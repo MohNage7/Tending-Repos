@@ -2,7 +2,7 @@ package com.mohnage7.tendingrepos
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mohnage7.domain.GetTendingReposUseCase
+import com.mohnage7.domain.GetTrendingReposUseCase
 import com.mohnage7.domain.model.TrendingRepo
 import com.mohnage7.tendingrepos.di.SchedulerProvider
 import com.mohnage7.tendingrepos.ui.ViewState
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TrendingReposViewModel @Inject constructor(
-    private val getTrendingReposUseCase: GetTendingReposUseCase,
+    private val getTrendingReposUseCase: GetTrendingReposUseCase,
     private val schedulerProvider: SchedulerProvider
 ) :
     ViewModel() {

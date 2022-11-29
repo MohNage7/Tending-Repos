@@ -1,7 +1,7 @@
 package com.mohnage7.tendingrepos
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.mohnage7.domain.GetTendingReposUseCase
+import com.mohnage7.domain.GetTrendingReposUseCase
 import com.mohnage7.domain.model.TrendingRepo
 import com.mohnage7.tendingrepos.ui.ViewState
 import com.mohnage7.tendingrepos.utils.SchedulerProviderTestImpl
@@ -25,7 +25,7 @@ class TrendingReposViewModelTest {
     private lateinit var SUT: TrendingReposViewModel
 
     @Mock
-    lateinit var getTendingReposUseCase: GetTendingReposUseCase
+    lateinit var getTendingReposUseCase: GetTrendingReposUseCase
 
     @Before
     fun setUp() {
