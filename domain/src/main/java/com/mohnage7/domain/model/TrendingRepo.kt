@@ -1,7 +1,7 @@
-package com.mohnage7.tendingrepos
+package com.mohnage7.domain.model
 
 data class TrendingRepo(
-    val image: Int,
+    val image: String,
     val author: String,
     val name: String,
     val description: String,
