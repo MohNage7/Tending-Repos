@@ -21,7 +21,9 @@ import com.mohnage7.tendingrepos.ui.LoadingShimmerEffect
 import com.mohnage7.tendingrepos.ui.ShimmerItem
 import com.mohnage7.tendingrepos.ui.theme.RepoItem
 import com.mohnage7.tendingrepos.ui.theme.TrendingReposTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
