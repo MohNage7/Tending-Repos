@@ -22,6 +22,9 @@ class TrendingReposRepositoryImplTest {
     @Mock
     private lateinit var localDataSource: LocalDataSource
 
+    @Mock
+    private lateinit var refreshRateLimiter: RefreshLimiter
+
     @Rule
     @JvmField
     var testSchedulerRule = RxTrampolineSchedulerRule()
@@ -31,7 +34,8 @@ class TrendingReposRepositoryImplTest {
         MockitoAnnotations.openMocks(this)
         SUT = TrendingReposRepositoryImpl(
             remoteDataSource = remoteDataSource,
-            localDataSource = localDataSource
+            localDataSource = localDataSource,
+            refreshRateLimiter = refreshRateLimiter
         )
     }
 
@@ -133,6 +137,42 @@ class TrendingReposRepositoryImplTest {
         //Assertion
         verify(localDataSource).getTrendingRepos()
         verify(localDataSource, never()).insertAll(anyList())
+    }
+
+
+    @Test
+    fun getTrendingReposCache_whenShouldFetchIsTrue_insertAll_shouldInvoked() {
+        //Prepare
+        mockCacheSuccess(listOf(TrendingReposEntity(1, "", "", "", "", "", 1)))
+        mockShouldFetch(true)
+        mockRemoteSuccess()
+
+        //Action
+        SUT.getTrendingReposCacheFirst().test()
+
+        //Assertion
+        verify(localDataSource).getTrendingRepos()
+        verify(localDataSource).insertAll(anyList())
+    }
+
+
+    @Test
+    fun getTrendingReposCache_whenShouldFetchIsFalse_insertAll_shouldNotInvoked() {
+        //Prepare
+        mockCacheSuccess(listOf(TrendingReposEntity(1, "", "", "", "", "", 1)))
+        mockShouldFetch(false)
+        mockRemoteSuccess()
+
+        //Action
+        SUT.getTrendingReposCacheFirst().test()
+
+        //Assertion
+        verify(localDataSource).getTrendingRepos()
+        verify(localDataSource, never()).insertAll(anyList())
+    }
+
+    private fun mockShouldFetch(shouldFetch: Boolean) {
+        `when`(refreshRateLimiter.shouldFetch(anyString())).thenReturn(shouldFetch)
     }
 
 

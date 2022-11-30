@@ -1,5 +1,7 @@
 package com.mohnage7.tendingrepos.di
 
+import com.mohnage7.data.RefreshLimiter
+import com.mohnage7.data.RefreshRateLimiter
 import com.mohnage7.data.TrendingReposRepositoryImpl
 import com.mohnage7.domain.TrendingReposRepository
 import com.mohnage7.local.LocalDataSource
@@ -23,4 +25,10 @@ interface DataModule {
     fun bindsLocalDataSource(
         localDataSource: LocalDataSourceImpl
     ): LocalDataSource
+
+    @Binds
+    fun bindsRefreshLimiter(
+        refreshRateLimiter: RefreshRateLimiter
+    ): RefreshLimiter
+
 }

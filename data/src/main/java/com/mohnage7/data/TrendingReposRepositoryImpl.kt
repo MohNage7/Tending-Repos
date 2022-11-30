@@ -9,16 +9,23 @@ import javax.inject.Inject
 
 class TrendingReposRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
-    private val localDataSource: LocalDataSource
+    private val localDataSource: LocalDataSource,
+    private val refreshRateLimiter: RefreshLimiter
 ) : TrendingReposRepository {
+
+//    private val refreshRateLimiter: RefreshRateLimiter<String> = RefreshRateLimiter()
     /**
      * Try to fetch the data from the database.
      * If it fails then try to fetch it from network
      */
     override fun getTrendingReposCacheFirst(): Single<List<TrendingRepo>> {
         return readFromCache()
-            .doOnSuccess { if (it.isNullOrEmpty()) throw CacheEmptyException() }
+            .doOnSuccess { shouldFetch(it) }
             .onErrorResumeWith(readFromRemote().doOnSuccess { synchronizeCacheWithRemote(it) })
+    }
+
+    private fun shouldFetch(trendingRepos: List<TrendingRepo>?) {
+        if (trendingRepos.isNullOrEmpty() || refreshRateLimiter.shouldFetch(this::class.java.name)) throw CacheEmptyException()
     }
 
     /**
