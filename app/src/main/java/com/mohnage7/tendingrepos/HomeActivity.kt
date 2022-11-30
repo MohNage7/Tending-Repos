@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalLifecycleComposeApi::class)
-
 package com.mohnage7.tendingrepos
 
 import android.os.Bundle
@@ -8,19 +6,21 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.runtime.Composable
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.MoreVert
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush.Companion.linearGradient
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import com.mohnage7.domain.model.TrendingRepo
 import com.mohnage7.tendingrepos.ui.ErrorState
 import com.mohnage7.tendingrepos.ui.LoadingShimmerEffect
@@ -43,17 +43,69 @@ class HomeActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    viewModel.trendingRepoViewState.observeAsState().value?.apply {
-                        RenderViewState(this)
+                    Column {
+                        RenderToolbar()
+                        RenderMainContent()
                     }
-                    fetchRepos()
+
                 }
             }
         }
+        fetchRepos()
     }
 
-    private fun fetchRepos() {
-        viewModel.fetchTrendingRepos()
+    @Composable
+    private fun RenderMainContent() {
+        viewModel.trendingRepoViewState.observeAsState().value?.apply {
+            RenderViewState(this)
+        }
+    }
+
+    @Composable
+    private fun RenderToolbar() {
+        TopAppBar(
+            title = {
+                Text(
+                    text = stringResource(R.string.app_name),
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.h5
+                )
+            },
+            actions = {
+                OverflowMenu {
+                    DropdownMenuItem(onClick = {
+                        fetchRepos(forceRemote = false)
+                    }) {
+                        Text(stringResource(R.string.refresh))
+                    }
+                }
+            }
+        )
+    }
+
+    @Composable
+    fun OverflowMenu(content: @Composable () -> Unit) {
+        var showMenu by remember { mutableStateOf(false) }
+
+        IconButton(onClick = {
+            showMenu = !showMenu
+        }) {
+            Icon(
+                imageVector = Icons.Outlined.MoreVert,
+                contentDescription = stringResource(R.string.more_button),
+            )
+        }
+        DropdownMenu(
+            expanded = showMenu,
+            onDismissRequest = { showMenu = false }
+        ) {
+            content()
+        }
+    }
+
+    private fun fetchRepos(forceRemote: Boolean = false) {
+        viewModel.fetchTrendingRepos(forceRemote)
     }
 
     @Composable
@@ -88,7 +140,7 @@ fun ShowShimmering() {
 @Composable
 fun ShowErrorState() {
     ErrorState {
-        // TODO: trigger retry logic
+//        fetchRepos(forceRemote = true)
     }
 }
 
@@ -121,6 +173,7 @@ fun DefaultPreview() {
         RenderTrendingRepos(
             listOf(
                 TrendingRepo(
+                    id = 1,
                     image = "R.drawable.baseline_account_circle_black_48",
                     author = "Nageh",
                     name = "Trending Repo",
@@ -129,6 +182,7 @@ fun DefaultPreview() {
                     language = "Kotlin"
                 ),
                 TrendingRepo(
+                    id = 2,
                     image = "R.drawable.baseline_account_circle_black_48",
                     author = "Nageh",
                     name = "Clean Arch",

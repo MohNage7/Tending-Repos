@@ -1,6 +1,7 @@
 package com.mohnage7.domain.model
 
 data class TrendingRepo(
+    val id: Long,
     val image: String,
     val author: String,
     val name: String,

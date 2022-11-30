@@ -29,27 +29,40 @@ class GetTendingReposUseCaseTest {
     }
 
     @Test
-    fun fetchTrendingRepos_whenCalled_thenTrendingReposRepository_shouldInvoked() {
+    fun fetchTrendingRepos_whenCalled_thenGetTrendingReposCache_shouldInvoked() {
         //Prepare
-        Mockito.`when`(trendingReposRepository.getTrendingRepos()).thenReturn(Single.just(listOf()))
+        Mockito.`when`(trendingReposRepository.getTrendingReposCacheFirst())
+            .thenReturn(Single.just(listOf()))
 
         //Action
-        SUT.invoke()
+        SUT.invoke(forceRemote = false)
 
         //Assertion
-        verify(trendingReposRepository).getTrendingRepos()
+        verify(trendingReposRepository).getTrendingReposCacheFirst()
     }
 
+    @Test
+    fun fetchTrendingRepos_whenCalled_thenGetTrendingReposRemote_shouldInvoked() {
+        //Prepare
+        Mockito.`when`(trendingReposRepository.getTrendingReposRemoteFirst())
+            .thenReturn(Single.just(listOf()))
+
+        //Action
+        SUT.invoke(forceRemote = true)
+
+        //Assertion
+        verify(trendingReposRepository).getTrendingReposRemoteFirst()
+    }
 
     @Test
     fun getTrendingRepos_whenCalled_thenReturnCorrectData() {
         //Prepare
         val expectedValue = listOf(trendingRepo())
-        Mockito.`when`(trendingReposRepository.getTrendingRepos())
+        Mockito.`when`(trendingReposRepository.getTrendingReposCacheFirst())
             .thenReturn(Single.just(expectedValue))
 
         //Action
-        val result = SUT.invoke()
+        val result = SUT.invoke(forceRemote = false)
 
         //Assertion
         result.test().assertValue(expectedValue)
@@ -57,6 +70,7 @@ class GetTendingReposUseCaseTest {
 
 
     private fun trendingRepo() = TrendingRepo(
+        id = 1,
         image = "",
         author = "Nageh",
         name = "Trending Repo",
