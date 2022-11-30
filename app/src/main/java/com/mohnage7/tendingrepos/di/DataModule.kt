@@ -1,7 +1,9 @@
 package com.mohnage7.tendingrepos.di
 
-import com.mohnage7.domain.OfflineFirstTrendingRepository
+import com.mohnage7.data.TrendingReposRepositoryImpl
 import com.mohnage7.domain.TrendingReposRepository
+import com.mohnage7.local.LocalDataSource
+import com.mohnage7.local.db.LocalDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,6 +15,12 @@ interface DataModule {
 
     @Binds
     fun bindsTopicRepository(
-        offlineFirstTrendingRepository: OfflineFirstTrendingRepository
+        offlineFirstTrendingRepository: TrendingReposRepositoryImpl
     ): TrendingReposRepository
+
+
+    @Binds
+    fun bindsLocalDataSource(
+        localDataSource: LocalDataSourceImpl
+    ): LocalDataSource
 }
