@@ -43,7 +43,7 @@ class TrendingReposViewModelTest {
 
         //Action
         SUT.trendingRepoViewState.observeForever {}
-        SUT.fetchTrendingRepos()
+        SUT.fetchTrendingRepos(forceRemote = false)
 
         //Assertion
         assertEquals(
@@ -55,13 +55,13 @@ class TrendingReposViewModelTest {
     fun fetchTrendingRepos_whenCalled_thenReturnCorrectData() {
         //Prepare
         val repo = trendingRepo()
-        Mockito.`when`(getTendingReposUseCase())
+        Mockito.`when`(getTendingReposUseCase(forceRemote = false))
             .thenReturn(
                 Single.just(listOf(repo))
             )
 
         //Action
-        SUT.fetchTrendingRepos()
+        SUT.fetchTrendingRepos(forceRemote = false)
 
         //Assertion
         val actualName =
@@ -75,16 +75,16 @@ class TrendingReposViewModelTest {
     fun fetchTrendingRepos_whenCalled_thenGetTendingReposUseCase_shouldInvoked() {
         //Prepare
         val repo = trendingRepo()
-        Mockito.`when`(getTendingReposUseCase())
+        Mockito.`when`(getTendingReposUseCase(forceRemote = false))
             .thenReturn(
                 Single.just(listOf(repo))
             )
 
         //Action
-        SUT.fetchTrendingRepos()
+        SUT.fetchTrendingRepos(forceRemote = false)
 
         //Assertion
-        verify(getTendingReposUseCase).invoke()
+        verify(getTendingReposUseCase).invoke(forceRemote = false)
     }
 
 
@@ -96,7 +96,7 @@ class TrendingReposViewModelTest {
 
         //Action
         SUT.trendingRepoViewState.observeForever {}
-        SUT.fetchTrendingRepos()
+        SUT.fetchTrendingRepos(forceRemote = false)
 
         //Assert
         assertEquals(
@@ -110,7 +110,7 @@ class TrendingReposViewModelTest {
 
     private fun delayerPublishSubject(repo: TrendingRepo): PublishSubject<List<TrendingRepo>> {
         val delayer: PublishSubject<List<TrendingRepo>> = PublishSubject.create()
-        Mockito.`when`(getTendingReposUseCase())
+        Mockito.`when`(getTendingReposUseCase(forceRemote = false))
             .thenReturn(
                 Single.just(listOf(repo)).delaySubscription(delayer)
             )
@@ -118,6 +118,7 @@ class TrendingReposViewModelTest {
     }
 
     private fun trendingRepo() = TrendingRepo(
+        id = 1,
         image = "",
         author = "Nageh",
         name = "Trending Repo",

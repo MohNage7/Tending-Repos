@@ -24,8 +24,8 @@ class TrendingReposViewModel @Inject constructor(
     val trendingRepoViewState: MutableLiveData<ViewState<List<TrendingRepo>>> = MutableLiveData()
 
 
-    fun fetchTrendingRepos() {
-        disposable = getTrendingReposUseCase.invoke()
+    fun fetchTrendingRepos(forceRemote: Boolean) {
+        disposable = getTrendingReposUseCase.invoke(forceRemote)
             .subscribeOn(schedulerProvider.io())
             .doOnSubscribe { trendingRepoViewState.toLoading() }
             .observeOn(schedulerProvider.ui())
