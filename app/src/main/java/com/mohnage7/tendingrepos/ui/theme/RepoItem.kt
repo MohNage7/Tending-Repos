@@ -1,4 +1,4 @@
-package com.mohnage7.tendingrepos.ui
+package com.mohnage7.tendingrepos.ui.theme
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -10,11 +10,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.mohnage7.domain.model.TrendingRepo
+import com.mohnage7.tendingrepos.TrendingRepo
 
 @Composable
 fun RepoItem(
@@ -38,10 +37,10 @@ fun RepoItem(
             model = item.image,
             contentDescription = "author_image",
             modifier = Modifier
-                .size(40.dp)
                 .clip(CircleShape)
                 .height(40.dp)
                 .width(40.dp)
+                .offset(y = 4.dp)
         )
 
         Spacer(modifier = Modifier.width(8.dp))
@@ -67,8 +66,6 @@ fun RepoItem(
             Text(
                 text = item.description,
                 fontSize = 12.sp,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
                 modifier = commonModifier.padding(4.dp),
                 color = Color.Gray, textAlign = TextAlign.Start
             )

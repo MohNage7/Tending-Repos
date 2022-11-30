@@ -22,11 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mohnage7.domain.model.TrendingRepo
-import com.mohnage7.tendingrepos.ui.ErrorState
-import com.mohnage7.tendingrepos.ui.LoadingShimmerEffect
-import com.mohnage7.tendingrepos.ui.ShimmerItem
-import com.mohnage7.tendingrepos.ui.ViewState
-import com.mohnage7.tendingrepos.ui.theme.RepoItem
+import com.mohnage7.tendingrepos.ui.*
 import com.mohnage7.tendingrepos.ui.theme.TrendingReposTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -75,7 +71,7 @@ class HomeActivity : ComponentActivity() {
             actions = {
                 OverflowMenu {
                     DropdownMenuItem(onClick = {
-                        fetchRepos(forceRemote = false)
+                        fetchRepos(forceRemote = true)
                     }) {
                         Text(stringResource(R.string.refresh))
                     }
