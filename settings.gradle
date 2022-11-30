@@ -15,3 +15,6 @@ dependencyResolutionManagement {
 rootProject.name = "Trending Repos"
 include ':app'
 include ':domain'
+include ':data'
+include ':local'
+include ':remote'
