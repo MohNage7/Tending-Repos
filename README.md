@@ -7,11 +7,11 @@
 ## Preview 
 
 ### Light Mode 
-<img src="https://github.com/MohNage7/Tending-Repos/blob/develop/screenshots/Screenshot_20221201_184258.png"  width="300" height="622" /> <img src="https://github.com/MohNage7/Tending-Repos/blob/develop/screenshots/Screenshot_20221201_183817.png"   width="300" height="622" /><img src="https://github.com/MohNage7/Tending-Repos/blob/develop/screenshots/Screenshot_20221201_184237.png"   width="300" height="622" />
+<img src="https://github.com/MohNage7/Tending-Repos/blob/develop/screenshots/Screenshot_20221201_184258.png"  width="197" height="414" /> <img src="https://github.com/MohNage7/Tending-Repos/blob/develop/screenshots/Screenshot_20221201_183817.png"   width="197" height="414"/><img src="https://github.com/MohNage7/Tending-Repos/blob/develop/screenshots/Screenshot_20221201_184237.png"  width="197" height="414" />
 
 ### Dark Mode 
 
-<img src="https://github.com/MohNage7/Tending-Repos/blob/develop/screenshots/Screenshot_20221201_184044.png"   width="300" height="622" /><img src="https://github.com/MohNage7/Tending-Repos/blob/develop/screenshots/Screenshot_20221201_184052.png"  width="300" height="622" /><img src="https://github.com/MohNage7/Tending-Repos/blob/develop/screenshots/Screenshot_20221201_184201.png"  width="300" height="622" />
+<img src="https://github.com/MohNage7/Tending-Repos/blob/develop/screenshots/Screenshot_20221201_184044.png"   width="197" height="414" /><img src="https://github.com/MohNage7/Tending-Repos/blob/develop/screenshots/Screenshot_20221201_184052.png"  width="197" height="414" /><img src="https://github.com/MohNage7/Tending-Repos/blob/develop/screenshots/Screenshot_20221201_184201.png"  width="197" height="414" />
 
 
 
