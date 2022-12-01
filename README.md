@@ -39,6 +39,21 @@ but users should be able to see current data when required.
 * Cache layer will always be our source of truth for data
 
 
+## Assumptions
+- To enable scalability we will build the MVP using Clean Architecture + MVVM 
+- We will adopt modulirzation by layer over modulirzation by feature but If we have a big team modulirzation by feature will be better.
+- We will assume that our dataset is fixed list and Pagination will be added in the next phase.
+- Cache will be our source of truth for data. All read operations has to be from the cache.
+- Data will be cached only for 1 mint and then it will expire.
+- If language is null we will hide its view
+- Language icon is fixed
+
+## Future enhancements
+- Convert android modules to Kotlin 
+- Use flow & coroutines instead of Rxjava
+
+
+
 ## Project Architecture 
 The project is following [clean architucte](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) , It’s a group of practices and decisions that makes the code testable with independable components.
 
