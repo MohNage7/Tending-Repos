@@ -92,9 +92,8 @@ fun RepoItem(
                         modifier = commonModifier,
                         color = Color.Gray, textAlign = TextAlign.Start
                     )
+                    Spacer(modifier = Modifier.width(24.dp))
                 }
-
-                Spacer(modifier = Modifier.width(24.dp))
 
                 Icon(
                     imageVector = TrendingIcons.Star, tint = Color.Red,
