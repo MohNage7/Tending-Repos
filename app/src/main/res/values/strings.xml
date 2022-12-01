@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Trending Repos</string>
+    <string name="app_name">Trending</string>
+    <string name="error_message_title">Something went wrong..</string>
+    <string name="error_message_content">An alien probably blocking your signal.</string>
+    <string name="error_button_title">retry</string>
+    <string name="refresh">Refresh</string>
+    <string name="more_button">More</string>
 </resources>
