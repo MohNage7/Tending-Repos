@@ -25,6 +25,9 @@ import com.mohnage7.tendingrepos.R
 @Composable
 fun ErrorState(retryAction: () -> Unit) {
     Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -72,6 +75,7 @@ fun LottieView() {
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.error_lottie_animation))
     val progress by animateLottieCompositionAsState(composition)
     LottieAnimation(
+        modifier = Modifier.fillMaxHeight(0.5f),
         composition = composition,
         progress = { progress },
     )

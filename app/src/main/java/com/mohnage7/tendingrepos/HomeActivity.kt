@@ -112,81 +112,51 @@ class HomeActivity : ComponentActivity() {
             is ViewState.Success -> RenderTrendingRepos(viewState.data)
         }
     }
-}
 
-@Composable
-fun RenderTrendingRepos(reposList: List<TrendingRepo>) {
-    LazyColumn {
-        items(reposList) { item ->
-            RepoItem(item = item)
-            Divider(color = Color.LightGray, thickness = 0.5.dp)
+    @Composable
+    fun RenderTrendingRepos(reposList: List<TrendingRepo>) {
+        LazyColumn {
+            items(reposList) { item ->
+                RepoItem(item = item)
+                Divider(color = Color.LightGray, thickness = 0.5.dp)
+            }
         }
     }
-}
 
-@Composable
-fun ShowShimmering() {
-    Column {
-        repeat(15) {
-            LoadingShimmerEffect()
+    @Composable
+    fun ShowShimmering() {
+        Column {
+            repeat(15) {
+                LoadingShimmerEffect()
+            }
         }
     }
-}
 
-@Composable
-fun ShowErrorState() {
-    ErrorState {
-//        fetchRepos(forceRemote = true)
+    @Composable
+    fun ShowErrorState() {
+        ErrorState {
+            fetchRepos(forceRemote = true)
+        }
     }
-}
 
 
-@Composable
-@Preview(showBackground = true)
-fun ShimmerPreview() {
-    ShimmerItem(
-        brush = linearGradient(
-            listOf(
-                Color.LightGray.copy(alpha = 0.9f),
-                Color.LightGray.copy(alpha = 0.4f),
-                Color.LightGray.copy(alpha = 0.9f)
-            )
-        )
-    )
-}
-
-@Composable
-@Preview(showBackground = true)
-fun ErrorStatePreview() {
-    ShowErrorState()
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    TrendingReposTheme {
-        RenderTrendingRepos(
-            listOf(
-                TrendingRepo(
-                    id = 1,
-                    image = "R.drawable.baseline_account_circle_black_48",
-                    author = "Nageh",
-                    name = "Trending Repo",
-                    description = "Trending Github repositories https://github.com/MohNage7/Tending-Repos",
-                    stars = 100,
-                    language = "Kotlin"
-                ),
-                TrendingRepo(
-                    id = 2,
-                    image = "R.drawable.baseline_account_circle_black_48",
-                    author = "Nageh",
-                    name = "Clean Arch",
-                    description = "Clean Github repositories https://github.com/MohNage7/Tending-Repos",
-                    stars = 10000,
-                    language = "Java"
+    @Composable
+    @Preview(showBackground = true)
+    fun ShimmerPreview() {
+        ShimmerItem(
+            brush = linearGradient(
+                listOf(
+                    Color.LightGray.copy(alpha = 0.9f),
+                    Color.LightGray.copy(alpha = 0.4f),
+                    Color.LightGray.copy(alpha = 0.9f)
                 )
             )
         )
+    }
+
+    @Composable
+    @Preview(showBackground = true)
+    fun ErrorStatePreview() {
+        ShowErrorState()
     }
 }
