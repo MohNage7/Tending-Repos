@@ -72,7 +72,7 @@ fun RepoItem(
                     top.linkTo(author.bottom)
                     start.linkTo(author.start)
                 },
-            color = Color.Black, textAlign = TextAlign.Start
+            textAlign = TextAlign.Start
         )
 
         Text(
