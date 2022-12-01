@@ -44,7 +44,7 @@ fun ErrorState(retryAction: () -> Unit) {
             text = stringResource(id = R.string.error_message_title),
             fontSize = 16.sp,
             modifier = commonModifier.padding(4.dp),
-            color = Color.Black, textAlign = TextAlign.Start
+            textAlign = TextAlign.Start
         )
 
         Text(
