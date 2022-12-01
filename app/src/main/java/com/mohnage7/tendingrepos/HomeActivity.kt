@@ -159,34 +159,4 @@ class HomeActivity : ComponentActivity() {
     fun ErrorStatePreview() {
         ShowErrorState()
     }
-
-
-    @Preview(showBackground = true)
-    @Composable
-    fun DefaultPreview() {
-        TrendingReposTheme {
-            RenderTrendingRepos(
-                listOf(
-                    TrendingRepo(
-                        id = 1,
-                        image = "R.drawable.baseline_account_circle_black_48",
-                        author = "Nageh",
-                        name = "Trending Repo",
-                        description = "Trending Github repositories https://github.com/MohNage7/Tending-Repos",
-                        stars = 100,
-                        language = "Kotlin"
-                    ),
-                    TrendingRepo(
-                        id = 2,
-                        image = "R.drawable.baseline_account_circle_black_48",
-                        author = "Nageh",
-                        name = "Clean Arch",
-                        description = "Clean Github repositories https://github.com/MohNage7/Tending-Repos",
-                        stars = 10000,
-                        language = "Java"
-                    )
-                )
-            )
-        }
-    }
 }
